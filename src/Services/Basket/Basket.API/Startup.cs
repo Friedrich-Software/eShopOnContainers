@@ -66,7 +66,7 @@ namespace Microsoft.eShopOnContainers.Services.Basket.API
 
             services.AddSwaggerGen(options =>
             {
-                options.DescribeAllEnumsAsStrings();
+             // TODO: options.DescribeAllEnumsAsStrings();
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "eShopOnContainers - Basket HTTP API",

@@ -7,7 +7,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.API.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return new RedirectResult("~/swagger");
+            return new AspNetCore.Mvc.RedirectResult("~/swagger");
         }
     }
 }

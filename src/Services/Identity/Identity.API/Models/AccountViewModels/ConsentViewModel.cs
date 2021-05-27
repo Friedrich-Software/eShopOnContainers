@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Validation;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,8 +20,31 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Models.AccountViewMo
             AllowRememberConsent = client.AllowRememberConsent;
 
             IdentityScopes = resources.IdentityResources.Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
-            ResourceScopes = resources.ApiResources.SelectMany(x => x.Scopes).Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
+            //ResourceScopes = resources.ApiResources.SelectMany(x => x.Scopes).Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
+
+            //ResourceScopes = resources.ApiResources.SelectMany(x => x.Scopes).Select(x => CreateScopeViewModel(x, vm.ScopesConsented.Contains(x.Name) || model == null)).ToArray();
+
         }
+        //private ScopeViewModel CreateScopeViewModel(IdentityResource identity, bool check)
+        //{
+        //    return new ScopeViewModel(identity, check);
+
+        //}
+
+
+        //public ScopeViewModel CreateScopeViewModel(ParsedScopeValue parsedScopeValue, ApiScope apiScope, bool check)
+        //{
+        //    return new ScopeViewModel(apiScope, check);
+        //}
+        //    private ScopeViewModel GetOfflineAccessScope(bool check)
+        //    {
+        //        return new ScopeViewModel(new Identity)
+        //        {
+
+        //            Emphasize = true,
+        //            Checked = check
+        //        };
+        //    }
 
         public string ClientName { get; init; }
         public string ClientUrl { get; init; }
@@ -33,7 +57,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Models.AccountViewMo
 
     public record ScopeViewModel
     {
-        public ScopeViewModel(Scope scope, bool check)
+        public ScopeViewModel(ApiScope scope, bool check)
         {
             Name = scope.Name;
             DisplayName = scope.DisplayName;

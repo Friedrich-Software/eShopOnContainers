@@ -220,7 +220,7 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API.Controllers
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<ActionResult> UpdateProductAsync([FromBody] CatalogItem productToUpdate)
+        public async Task<AspNetCore.Mvc.ActionResult> UpdateProductAsync([FromBody] CatalogItem productToUpdate)
         {
             var catalogItem = await _catalogContext.CatalogItems.SingleOrDefaultAsync(i => i.Id == productToUpdate.Id);
 

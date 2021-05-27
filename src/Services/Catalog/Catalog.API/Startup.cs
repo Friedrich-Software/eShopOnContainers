@@ -256,7 +256,7 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API
         {
             services.AddSwaggerGen(options =>
             {
-                options.DescribeAllEnumsAsStrings();
+                // TODO: options.DescribeAllEnumsAsStrings();
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "eShopOnContainers - Catalog HTTP API",

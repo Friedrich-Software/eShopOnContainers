@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using Webhooks.API.Exceptions;
-using Webhooks.API.Infrastructure.ActionResult;
+using Microsoft.AspNetCore.Mvc.ActionResult;
 
 namespace Webhooks.API.Infrastructure
 {

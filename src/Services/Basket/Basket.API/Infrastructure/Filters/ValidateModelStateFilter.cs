@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Basket.API.Infrastructure.Filters
 {
-    public class ValidateModelStateFilter : ActionFilterAttribute
+    public class ValidateModelStateFilter : Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext context)
         {
             if (context.ModelState.IsValid)
             {

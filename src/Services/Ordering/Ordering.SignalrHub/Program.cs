@@ -1,71 +1,34 @@
-﻿using Microsoft.AspNetCore;
+﻿// This application entry point is based on ASP.NET Core new project templates and is included
+// as a starting point for app host configuration.
+// This file may need updated according to the specific scenario of the application being upgraded.
+// For more information on ASP.NET Core hosting, see https://docs.microsoft.com/aspnet/core/fundamentals/host/web-host
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Serilog;
-using System;
-using System.IO;
-using Ordering.SignalrHub;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-var configuration = GetConfiguration();
-
-Log.Logger = CreateSerilogLogger(configuration);
-
-try
+namespace Ordering.SignalrHub
 {
-    Log.Information("Configuring web host ({ApplicationContext})...", Program.AppName);
-    var host = BuildWebHost(configuration, args);
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-    Log.Information("Starting web host ({ApplicationContext})...", Program.AppName);
-    host.Run();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
 
-    return 0;
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Program terminated unexpectedly ({ApplicationContext})!", Program.AppName);
-    return 1;
-}
-finally
-{
-    Log.CloseAndFlush();
-}
-
-
-static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .CaptureStartupErrors(false)
-        .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-        .UseStartup<Startup>()
-        .UseSerilog()
-        .Build();
-
-static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
-{
-    var seqServerUrl = configuration["Serilog:SeqServerUrl"];
-    var logstashUrl = configuration["Serilog:LogstashgUrl"];
-    return new LoggerConfiguration()
-        .MinimumLevel.Verbose()
-        .Enrich.WithProperty("ApplicationContext", Program.AppName)
-        .Enrich.FromLogContext()
-        .WriteTo.Console()
-        .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
-        .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:8080" : logstashUrl)
-        .ReadFrom.Configuration(configuration)
-        .CreateLogger();
-}
-
-static IConfiguration GetConfiguration()
-{
-    var builder = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddEnvironmentVariables();
-
-    return builder.Build();
-}
-
-public class Program
-{
-    public static string Namespace = typeof(Startup).Namespace;
-    public static string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
+        public static string Namespace = typeof(Startup).Namespace;
+        public static string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
+    }
 }

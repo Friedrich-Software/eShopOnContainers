@@ -134,7 +134,7 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator
 
             services.AddSwaggerGen(options =>
             {
-                options.DescribeAllEnumsAsStrings();
+             // TODO: options.DescribeAllEnumsAsStrings();
 
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {

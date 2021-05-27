@@ -8,7 +8,7 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator.Controllers
         [HttpGet()]
         public IActionResult Index()
         {
-            return new RedirectResult("~/swagger");
+            return new AspNetCore.Mvc.RedirectResult("~/swagger");
         }
     }
 }

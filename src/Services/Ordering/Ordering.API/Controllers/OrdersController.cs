@@ -100,7 +100,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(Order), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult> GetOrderAsync(int orderId)
+        public async Task<AspNetCore.Mvc.ActionResult> GetOrderAsync(int orderId)
         {
             try
             {

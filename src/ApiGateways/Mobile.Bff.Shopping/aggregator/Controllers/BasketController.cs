@@ -122,7 +122,7 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator.Controllers
         [Route("items")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> AddBasketItemAsync([FromBody] AddBasketItemRequest data)
+        public async Task<AspNetCore.Mvc.ActionResult> AddBasketItemAsync([FromBody] AddBasketItemRequest data)
         {
             if (data == null || data.Quantity == 0)
             {
