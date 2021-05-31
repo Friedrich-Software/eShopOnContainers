@@ -5,7 +5,11 @@
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
     <LangVersion>preview</LangVersion>
+    <StartupObject></StartupObject>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Program.cs.new" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
@@ -17,7 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.15" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="6.0.0-preview.4.21253.5" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
-    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.1-dev-00227" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0-dev-00784" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.2.0-dev-00272" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0-dev-00839" />
