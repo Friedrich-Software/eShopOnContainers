@@ -30,6 +30,8 @@ namespace Microsoft.AspNetCore.Hosting
                 try
                 {
                     logger.LogInformation("Migrating database associated with context {DbContextName}", typeof(TContext).Name);
+                    //context.Database.EnsureDeleted();
+                    //context.Database.EnsureCreated();
 
                     if (underK8s)
                     {

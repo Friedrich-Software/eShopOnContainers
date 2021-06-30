@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.eShopOnContainers.Services.Identity.API.Models;
+
 
 namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            //TODO:REMOVE !
+           // this.DropCreateDatabaseAlways();
         }
+
+       
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
